@@ -13,29 +13,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background-size: cover;
+            background-position: center;
             z-index: -1;
         }
     </style>
 </head>
 <body>
 
-<!-- GIF Background Element -->
+<!-- Background Image Element (Displays GIFs as static images) -->
 <img id="background" class="background" src="">
 
 <script>
 // ✅ Corrected GitHub URLs with the right repository name (Assignment-6)
-const gifURLs = {
-    scene1: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/1.gif',
-    scene2: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/2.gif',
-    scene3: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/3.gif',
-    scene4: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/4.gif',
-    scene5: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/5.gif'
+const imageURLs = {
+    scene1: 'https://yuligryb.github.io/Assignment-6/assets/1.gif',
+    scene2: 'https://yuligryb.github.io/Assignment-6/assets/2.gif',
+    scene3: 'https://yuligryb.github.io/Assignment-6/assets/3.gif',
+    scene4: 'https://yuligryb.github.io/Assignment-6/assets/4.gif',
+    scene5: 'https://yuligryb.github.io/Assignment-6/assets/5.gif'
 };
 
-// ✅ Function to set animated GIF backgrounds
-function setGIFBackground(sceneKey) {
-    document.getElementById("background").src = gifURLs[sceneKey] + `?v=${new Date().getTime()}`; // Bypass caching
+// ✅ Function to set GIFs as static backgrounds
+function setStaticBackground(sceneKey) {
+    document.getElementById("background").src = imageURLs[sceneKey]; 
 }
 
 // ✅ Function to add pixel-art styled text
@@ -65,7 +66,7 @@ class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
     create() {
-        setGIFBackground('scene1'); // ✅ Make GIF animate
+        setStaticBackground('scene1'); // ✅ Displays GIF as a static image
         addPixelText(this, 'Welcome');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -78,7 +79,7 @@ class Scene2 extends Phaser.Scene {
     constructor() { super({ key: 'Scene2' }); }
 
     create() {
-        setGIFBackground('scene2'); // ✅ Make GIF animate
+        setStaticBackground('scene2'); // ✅ Displays GIF as a static image
         addPixelText(this, 'To My');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -91,7 +92,7 @@ class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
     create() {
-        setGIFBackground('scene3'); // ✅ Make GIF animate
+        setStaticBackground('scene3'); // ✅ Displays GIF as a static image
         addPixelText(this, 'Phaser Transitions');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -104,7 +105,7 @@ class Scene4 extends Phaser.Scene {
     constructor() { super({ key: 'Scene4' }); }
 
     create() {
-        setGIFBackground('scene4'); // ✅ Make GIF animate
+        setStaticBackground('scene4'); // ✅ Displays GIF as a static image
         addPixelText(this, 'Thank You!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -117,7 +118,7 @@ class Scene5 extends Phaser.Scene {
     constructor() { super({ key: 'Scene5' }); }
 
     create() {
-        setGIFBackground('scene5'); // ✅ Make GIF animate
+        setStaticBackground('scene5'); // ✅ Displays GIF as a static image
         addPixelText(this, 'Yippee!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
