@@ -11,13 +11,13 @@
 <body>
 
 <script>
-// Helper function to add background safely
+// ✅ Helper function to safely add a background image
 function addBackground(scene, key) {
     if (scene.textures.exists(key)) {
         scene.add.image(window.innerWidth / 2, window.innerHeight / 2, key)
              .setDisplaySize(window.innerWidth, window.innerHeight);
     } else {
-        console.warn(`Image ${key} failed to load. Adding fallback background.`);
+        console.warn(`❌ ERROR: Image ${key} failed to load. Adding fallback background.`);
         scene.cameras.main.setBackgroundColor('#000'); // Black fallback
     }
 }
@@ -27,11 +27,11 @@ class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
     preload() {
-        this.load.image('title_bg', 'https://i.imgur.com/2HqsF6j.gif');
+        this.load.image('scene1_bg', 'assets/1.gif');
     }
 
     create() {
-        addBackground(this, 'title_bg');
+        addBackground(this, 'scene1_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen', 
             { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
@@ -45,7 +45,7 @@ class Scene2 extends Phaser.Scene {
     constructor() { super({ key: 'Scene2' }); }
 
     preload() {
-        this.load.image('scene2_bg', 'https://i.imgur.com/ZOL8lqy.gif');
+        this.load.image('scene2_bg', 'assets/2.gif');
     }
 
     create() {
@@ -63,7 +63,7 @@ class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
     preload() {
-        this.load.image('scene3_bg', 'https://i.imgur.com/PlLrpy0.gif');
+        this.load.image('scene3_bg', 'assets/3.gif');
     }
 
     create() {
@@ -81,7 +81,7 @@ class Scene4 extends Phaser.Scene {
     constructor() { super({ key: 'Scene4' }); }
 
     preload() {
-        this.load.image('scene4_bg', 'https://i.imgur.com/afIvznh.gif');
+        this.load.image('scene4_bg', 'assets/4.gif');
     }
 
     create() {
@@ -99,7 +99,7 @@ class Scene5 extends Phaser.Scene {
     constructor() { super({ key: 'Scene5' }); }
 
     preload() {
-        this.load.image('scene5_bg', 'https://i.imgur.com/SjzbUQi.gif');
+        this.load.image('scene5_bg', 'assets/5.gif');
     }
 
     create() {
