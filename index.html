@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phaser Scene Transitions</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+<script>
+
+function addBackground(scene, key) {
+    if (scene.textures.exists(key)) {
+        scene.add.image(window.innerWidth / 2, window.innerHeight / 2, key)
+             .setDisplaySize(window.innerWidth, window.innerHeight);
+    } else {
+        console.warn(`Image ${key} failed to load. Adding fallback background.`);
+        scene.cameras.main.setBackgroundColor('#000'); // Black fallback
+    }
+}
+
+// Scene 1: Title Screen
+class TitleScene extends Phaser.Scene {
+    constructor() { super({ key: 'TitleScene' }); }
+
+    preload() {
+        this.load.image('title_bg', 'https://www.worldcampus.psu.edu/sites/default/files/styles/open_graph_16_9_xl/public/2018-12/1920x840_about-us_L1_1.jpg?itok=mTcGQBq9');
+    }
+
+    create() {
+        addBackground(this, 'title_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene2'));
+    }
+}
+
+// Scene 2
+class Scene2 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene2' }); }
+
+    preload() {
+        this.load.image('scene2_bg', 'https://www.collegegridirons.com/wp-content/uploads/2017/03/beaver23950.jpg');
+    }
+
+    create() {
+        addBackground(this, 'scene2_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 2', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene3'));
+    }
+}
+
+// Scene 3
+class Scene3 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene3' }); }
+
+    preload() {
+        this.load.image('scene3_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/node_embed/public/abingtonbeautytourstudyoutside-43-800x450.jpg?itok=TibFLM8O');
+    }
+
+    create() {
+        addBackground(this, 'scene3_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 3', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene4'));
+    }
+}
+
+// Scene 4
+class Scene4 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene4' }); }
+
+    preload() {
+        this.load.image('scene4_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/2022/02/CampusExteriorSummer2018-34.jpg');
+    }
+
+    create() {
+        addBackground(this, 'scene4_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 4', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene5'));
+    }
+}
+
+// Scene 5
+class Scene5 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene5' }); }
+
+    preload() {
+        this.load.image('scene5_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/Nittany%20Lion%20Shrine%203a.jpg');
+    }
+
+    create() {
+        addBackground(this, 'scene5_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 5', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('TitleScene')); // Loops back
+    }
+}
+
+
+const config = {
+    type: Phaser.AUTO,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scene: [TitleScene, Scene2, Scene3, Scene4, Scene5]
+};
+
+const game = new Phaser.Game(config);
+</script>
+
+</body>
+</html>
