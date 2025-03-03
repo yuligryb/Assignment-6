@@ -25,16 +25,16 @@
 <div id="background" class="background"></div>
 
 <script>
-// ✅ Update these URLs with your actual GitHub username & repository name
+// ✅ Corrected GitHub URLs with your details (yuligryb / Assignment_6)
 const gifURLs = {
-    scene1: 'https://yuligryb.github.io/Assignment-6/assets/1.gif',
-    scene2: 'https://yuligryb.github.io/Assignment-6/assets/2.gif',
-    scene3: 'https://yuligryb.github.io/Assignment-6/assets/3.gif',
-    scene4: 'https://yuligryb.github.io/Assignment-6/assets/4.gif',
-    scene5: 'https://yuligryb.github.io/Assignment-6/assets/5.gif'
+    scene1: 'https://yuligryb.github.io/Assignment_6/assets/1.gif',
+    scene2: 'https://yuligryb.github.io/Assignment_6/assets/2.gif',
+    scene3: 'https://yuligryb.github.io/Assignment_6/assets/3.gif',
+    scene4: 'https://yuligryb.github.io/Assignment_6/assets/4.gif',
+    scene5: 'https://yuligryb.github.io/Assignment_6/assets/5.gif'
 };
 
-// ✅ Helper function to set animated GIF backgrounds
+// ✅ Function to set animated GIF backgrounds
 function setGIFBackground(sceneKey) {
     const bg = document.getElementById("background");
     bg.style.backgroundImage = `url('${gifURLs[sceneKey]}?v=${new Date().getTime()}')`; // Bypass caching
