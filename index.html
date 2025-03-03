@@ -123,7 +123,7 @@ class Scene5 extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene5_bg');
-        addPixelText(this, 'Yippee!!!');
+        addPixelText(this, 'Yippee!!! Thanks to the help of ChatGPT');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('TitleScene')); // Loop back to Scene 1
