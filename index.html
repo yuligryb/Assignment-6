@@ -13,31 +13,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
+            object-fit: cover;
             z-index: -1;
         }
     </style>
 </head>
 <body>
 
-<!-- Background GIFs -->
-<img id="background" class="background">
+<!-- Background GIF Element -->
+<img id="background" class="background" src="">
 
 <script>
-// ✅ Update these URLs with your actual GitHub username & repository name
+// ✅ Corrected GitHub URLs with the right repository name (Assignment-6)
 const gifURLs = {
-    scene1: 'https://yuligryb.github.io/Assignment-6/assets/1.gif',
-    scene2: 'https://yuligryb.github.io/Assignment-6/assets/2.gif',
-    scene3: 'https://yuligryb.github.io/Assignment-6/assets/3.gif',
-    scene4: 'https://yuligryb.github.io/Assignment-6/assets/4.gif',
-    scene5: 'https://yuligryb.github.io/Assignment-6/assets/5.gif'
+    scene1: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/1.gif',
+    scene2: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/2.gif',
+    scene3: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/3.gif',
+    scene4: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/4.gif',
+    scene5: 'https://raw.githubusercontent.com/yuligryb/Assignment-6/main/assets/5.gif'
 };
 
-// ✅ Function to set animated GIF backgrounds using HTML
+// ✅ Function to set animated GIF backgrounds
 function setGIFBackground(sceneKey) {
-    const bg = document.getElementById("background");
-    bg.src = gifURLs[sceneKey]; // Set image source
+    document.getElementById("background").src = gifURLs[sceneKey] + `?v=${new Date().getTime()}`; // Bypass caching
 }
 
 // ✅ Function to add pixel-art styled text
