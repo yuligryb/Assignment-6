@@ -6,24 +6,43 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; overflow: hidden; }
+        body { margin: 0; overflow: hidden; font-family: "Press Start 2P", cursive; }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
 
+<!-- Background Element for GIFs -->
+<div id="background" class="background"></div>
+
 <script>
-// ✅ Helper function to safely add a background image
-function addBackground(scene, key) {
-    if (scene.textures.exists(key)) {
-        scene.add.image(window.innerWidth / 2, window.innerHeight / 2, key)
-             .setDisplaySize(window.innerWidth, window.innerHeight);
-    } else {
-        console.warn(`❌ ERROR: Image ${key} failed to load. Adding fallback background.`);
-        scene.cameras.main.setBackgroundColor('#000'); // Black fallback
+// ✅ Preload Font Scene (Ensures font loads before Scene 1)
+class PreloadScene extends Phaser.Scene {
+    constructor() { super({ key: 'PreloadScene' }); }
+
+    create() {
+        document.fonts.ready.then(() => {
+            console.log('✅ Font Loaded! Starting Title Scene...');
+            this.scene.start('TitleScene'); // Load Title Scene after font is ready
+        });
     }
 }
 
-// ✅ Function to add pixel art-style text
+// ✅ Helper function to set GIF backgrounds
+function setGIFBackground(url) {
+    document.getElementById("background").style.backgroundImage = `url('${url}')`;
+}
+
+// ✅ Function to add pixel-art styled text
 function addPixelText(scene, message) {
     scene.add.text(window.innerWidth / 2, window.innerHeight / 2, message, {
         fontSize: '32px',
@@ -37,12 +56,8 @@ function addPixelText(scene, message) {
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
-    preload() {
-        this.load.image('scene1_bg', 'assets/1.gif');
-    }
-
     create() {
-        addBackground(this, 'scene1_bg');
+        setGIFBackground('assets/1.gif'); // ✅ Make GIF animate
         addPixelText(this, 'Welcome');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -54,12 +69,8 @@ class TitleScene extends Phaser.Scene {
 class Scene2 extends Phaser.Scene {
     constructor() { super({ key: 'Scene2' }); }
 
-    preload() {
-        this.load.image('scene2_bg', 'assets/2.gif');
-    }
-
     create() {
-        addBackground(this, 'scene2_bg');
+        setGIFBackground('assets/2.gif'); // ✅ Make GIF animate
         addPixelText(this, 'To My');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -71,12 +82,8 @@ class Scene2 extends Phaser.Scene {
 class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
-    preload() {
-        this.load.image('scene3_bg', 'assets/3.gif');
-    }
-
     create() {
-        addBackground(this, 'scene3_bg');
+        setGIFBackground('assets/3.gif'); // ✅ Make GIF animate
         addPixelText(this, 'Phaser Transitions');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -88,12 +95,8 @@ class Scene3 extends Phaser.Scene {
 class Scene4 extends Phaser.Scene {
     constructor() { super({ key: 'Scene4' }); }
 
-    preload() {
-        this.load.image('scene4_bg', 'assets/4.gif');
-    }
-
     create() {
-        addBackground(this, 'scene4_bg');
+        setGIFBackground('assets/4.gif'); // ✅ Make GIF animate
         addPixelText(this, 'Thank You!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -105,12 +108,8 @@ class Scene4 extends Phaser.Scene {
 class Scene5 extends Phaser.Scene {
     constructor() { super({ key: 'Scene5' }); }
 
-    preload() {
-        this.load.image('scene5_bg', 'assets/5.gif');
-    }
-
     create() {
-        addBackground(this, 'scene5_bg');
+        setGIFBackground('assets/5.gif'); // ✅ Make GIF animate
         addPixelText(this, 'Yippee!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -123,7 +122,7 @@ const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
     height: window.innerHeight,
-    scene: [TitleScene, Scene2, Scene3, Scene4, Scene5]
+    scene: [PreloadScene, TitleScene, Scene2, Scene3, Scene4, Scene5]
 };
 
 const game = new Phaser.Game(config);
