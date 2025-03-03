@@ -36,5 +36,92 @@ class TitleScene extends Phaser.Scene {
             { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
-        this.input.keyboard.on('keydown-SPACE', () => this
-WSS
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene2'));
+    }
+}
+
+// Scene 2
+class Scene2 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene2' }); }
+
+    preload() {
+        this.load.image('scene2_bg', 'https://i.imgur.com/ZOL8lqy.gif');
+    }
+
+    create() {
+        addBackground(this, 'scene2_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 2', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene3'));
+    }
+}
+
+// Scene 3
+class Scene3 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene3' }); }
+
+    preload() {
+        this.load.image('scene3_bg', 'https://i.imgur.com/PlLrpy0.gif');
+    }
+
+    create() {
+        addBackground(this, 'scene3_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 3', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene4'));
+    }
+}
+
+// Scene 4
+class Scene4 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene4' }); }
+
+    preload() {
+        this.load.image('scene4_bg', 'https://i.imgur.com/afIvznh.gif');
+    }
+
+    create() {
+        addBackground(this, 'scene4_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 4', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene5'));
+    }
+}
+
+// Scene 5
+class Scene5 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene5' }); }
+
+    preload() {
+        this.load.image('scene5_bg', 'https://i.imgur.com/SjzbUQi.gif');
+    }
+
+    create() {
+        addBackground(this, 'scene5_bg');
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 5', 
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('TitleScene')); // Loop back to Scene 1
+    }
+}
+
+// ✅ Now create the Phaser game AFTER defining all scenes
+const config = {
+    type: Phaser.AUTO,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scene: [TitleScene, Scene2, Scene3, Scene4, Scene5]
+};
+
+const game = new Phaser.Game(config);
+</script>
+
+</body>
+</html>
