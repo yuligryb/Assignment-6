@@ -25,21 +25,19 @@
 <div id="background" class="background"></div>
 
 <script>
-// ✅ Preload Font Scene (Ensures font loads before Scene 1)
-class PreloadScene extends Phaser.Scene {
-    constructor() { super({ key: 'PreloadScene' }); }
+// ✅ Update these URLs with your actual GitHub username & repository name
+const gifURLs = {
+    scene1: 'https://yuligryb.github.io/assignment-6/assets/1.gif',
+    scene2: 'https://yuligryb.github.io/assignment-6/assets/2.gif',
+    scene3: 'https://yuligryb.github.io/assignment-6/assets/3.gif',
+    scene4: 'https://yuligryb.github.io/assignment-6/assets/4.gif',
+    scene5: 'https://yuligryb.github.io/assignment-6/assets/5.gif'
+};
 
-    create() {
-        document.fonts.ready.then(() => {
-            console.log('✅ Font Loaded! Starting Title Scene...');
-            this.scene.start('TitleScene'); // Load Title Scene after font is ready
-        });
-    }
-}
-
-// ✅ Helper function to set GIF backgrounds
-function setGIFBackground(url) {
-    document.getElementById("background").style.backgroundImage = `url('${url}')`;
+// ✅ Helper function to set animated GIF backgrounds
+function setGIFBackground(sceneKey) {
+    const bg = document.getElementById("background");
+    bg.style.backgroundImage = `url('${gifURLs[sceneKey]}?v=${new Date().getTime()}')`; // Bypass caching
 }
 
 // ✅ Function to add pixel-art styled text
@@ -52,12 +50,24 @@ function addPixelText(scene, message) {
     }).setOrigin(0.5);
 }
 
+// Preload Font Scene (Ensures font loads before Scene 1)
+class PreloadScene extends Phaser.Scene {
+    constructor() { super({ key: 'PreloadScene' }); }
+
+    create() {
+        document.fonts.ready.then(() => {
+            console.log('✅ Font Loaded! Starting Title Scene...');
+            this.scene.start('TitleScene'); // Load Title Scene after font is ready
+        });
+    }
+}
+
 // Scene 1
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
     create() {
-        setGIFBackground('assets/1.gif'); // ✅ Make GIF animate
+        setGIFBackground('scene1'); // ✅ Make GIF animate
         addPixelText(this, 'Welcome');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -70,7 +80,7 @@ class Scene2 extends Phaser.Scene {
     constructor() { super({ key: 'Scene2' }); }
 
     create() {
-        setGIFBackground('assets/2.gif'); // ✅ Make GIF animate
+        setGIFBackground('scene2'); // ✅ Make GIF animate
         addPixelText(this, 'To My');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -83,7 +93,7 @@ class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
     create() {
-        setGIFBackground('assets/3.gif'); // ✅ Make GIF animate
+        setGIFBackground('scene3'); // ✅ Make GIF animate
         addPixelText(this, 'Phaser Transitions');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -96,7 +106,7 @@ class Scene4 extends Phaser.Scene {
     constructor() { super({ key: 'Scene4' }); }
 
     create() {
-        setGIFBackground('assets/4.gif'); // ✅ Make GIF animate
+        setGIFBackground('scene4'); // ✅ Make GIF animate
         addPixelText(this, 'Thank You!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -109,7 +119,7 @@ class Scene5 extends Phaser.Scene {
     constructor() { super({ key: 'Scene5' }); }
 
     create() {
-        setGIFBackground('assets/5.gif'); // ✅ Make GIF animate
+        setGIFBackground('scene5'); // ✅ Make GIF animate
         addPixelText(this, 'Yippee!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
