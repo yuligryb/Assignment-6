@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Phaser Scene Transitions</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; overflow: hidden; }
     </style>
@@ -22,6 +23,16 @@ function addBackground(scene, key) {
     }
 }
 
+// ✅ Function to add pixel art-style text
+function addPixelText(scene, message) {
+    scene.add.text(window.innerWidth / 2, window.innerHeight / 2, message, {
+        fontSize: '32px',
+        fontFamily: '"Press Start 2P", cursive',
+        fill: '#ffffff',
+        align: 'center'
+    }).setOrigin(0.5);
+}
+
 // Scene 1
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
@@ -32,8 +43,7 @@ class TitleScene extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene1_bg');
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen', 
-            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+        addPixelText(this, 'Welcome');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene2'));
@@ -50,8 +60,7 @@ class Scene2 extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene2_bg');
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 2', 
-            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+        addPixelText(this, 'To My');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene3'));
@@ -68,8 +77,7 @@ class Scene3 extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene3_bg');
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 3', 
-            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+        addPixelText(this, 'Phaser Transitions');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene4'));
@@ -86,8 +94,7 @@ class Scene4 extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene4_bg');
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 4', 
-            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+        addPixelText(this, 'Thank You!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene5'));
@@ -104,8 +111,7 @@ class Scene5 extends Phaser.Scene {
 
     create() {
         addBackground(this, 'scene5_bg');
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 5', 
-            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
+        addPixelText(this, 'Yippee!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
         this.input.keyboard.on('keydown-SPACE', () => this.scene.start('TitleScene')); // Loop back to Scene 1
