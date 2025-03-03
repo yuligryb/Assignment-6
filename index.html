@@ -7,39 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; overflow: hidden; font-family: "Press Start 2P", cursive; }
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
     </style>
 </head>
 <body>
 
-<!-- Background Image Element (Displays GIFs as static images) -->
-<img id="background" class="background" src="">
-
 <script>
-// ✅ Corrected GitHub URLs with the right repository name (Assignment-6)
-const imageURLs = {
-    scene1: 'https://yuligryb.github.io/Assignment-6/assets/1.gif',
-    scene2: 'https://yuligryb.github.io/Assignment-6/assets/2.gif',
-    scene3: 'https://yuligryb.github.io/Assignment-6/assets/3.gif',
-    scene4: 'https://yuligryb.github.io/Assignment-6/assets/4.gif',
-    scene5: 'https://yuligryb.github.io/Assignment-6/assets/5.gif'
-};
-
-// ✅ Function to set GIFs as static backgrounds
-function setStaticBackground(sceneKey) {
-    document.getElementById("background").src = imageURLs[sceneKey]; 
+// ✅ Helper function to safely add a background image
+function addBackground(scene, key) {
+    if (scene.textures.exists(key)) {
+        scene.add.image(window.innerWidth / 2, window.innerHeight / 2, key)
+             .setDisplaySize(window.innerWidth, window.innerHeight);
+    } else {
+        console.warn(`❌ ERROR: Image ${key} failed to load. Adding fallback background.`);
+        scene.cameras.main.setBackgroundColor('#000'); // Black fallback
+    }
 }
 
-// ✅ Function to add pixel-art styled text
+// ✅ Function to add pixel-art styled text (Fixes Scene 1 font issue)
 function addPixelText(scene, message) {
     scene.add.text(window.innerWidth / 2, window.innerHeight / 2, message, {
         fontSize: '32px',
@@ -49,14 +33,14 @@ function addPixelText(scene, message) {
     }).setOrigin(0.5);
 }
 
-// Preload Font Scene (Ensures font loads before Scene 1)
+// Preload Font Scene (Ensures font is ready before Scene 1)
 class PreloadScene extends Phaser.Scene {
     constructor() { super({ key: 'PreloadScene' }); }
 
     create() {
         document.fonts.ready.then(() => {
             console.log('✅ Font Loaded! Starting Title Scene...');
-            this.scene.start('TitleScene'); // Load Title Scene after font is ready
+            this.scene.start('TitleScene'); // Load Title Scene only after font is ready
         });
     }
 }
@@ -65,8 +49,12 @@ class PreloadScene extends Phaser.Scene {
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
+    preload() {
+        this.load.image('scene1_bg', 'assets/1.gif');
+    }
+
     create() {
-        setStaticBackground('scene1'); // ✅ Displays GIF as a static image
+        addBackground(this, 'scene1_bg');
         addPixelText(this, 'Welcome');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -78,8 +66,12 @@ class TitleScene extends Phaser.Scene {
 class Scene2 extends Phaser.Scene {
     constructor() { super({ key: 'Scene2' }); }
 
+    preload() {
+        this.load.image('scene2_bg', 'assets/2.gif');
+    }
+
     create() {
-        setStaticBackground('scene2'); // ✅ Displays GIF as a static image
+        addBackground(this, 'scene2_bg');
         addPixelText(this, 'To My');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -91,8 +83,12 @@ class Scene2 extends Phaser.Scene {
 class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
+    preload() {
+        this.load.image('scene3_bg', 'assets/3.gif');
+    }
+
     create() {
-        setStaticBackground('scene3'); // ✅ Displays GIF as a static image
+        addBackground(this, 'scene3_bg');
         addPixelText(this, 'Phaser Transitions');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -104,8 +100,12 @@ class Scene3 extends Phaser.Scene {
 class Scene4 extends Phaser.Scene {
     constructor() { super({ key: 'Scene4' }); }
 
+    preload() {
+        this.load.image('scene4_bg', 'assets/4.gif');
+    }
+
     create() {
-        setStaticBackground('scene4'); // ✅ Displays GIF as a static image
+        addBackground(this, 'scene4_bg');
         addPixelText(this, 'Thank You!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
@@ -117,8 +117,12 @@ class Scene4 extends Phaser.Scene {
 class Scene5 extends Phaser.Scene {
     constructor() { super({ key: 'Scene5' }); }
 
+    preload() {
+        this.load.image('scene5_bg', 'assets/5.gif');
+    }
+
     create() {
-        setStaticBackground('scene5'); // ✅ Displays GIF as a static image
+        addBackground(this, 'scene5_bg');
         addPixelText(this, 'Yippee!!!');
 
         this.cameras.main.fadeIn(500, 0, 0, 0);
