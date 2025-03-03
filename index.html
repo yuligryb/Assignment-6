@@ -21,11 +21,11 @@
 </head>
 <body>
 
-<!-- Background Element for GIFs -->
-<div id="background" class="background"></div>
+<!-- Background GIFs -->
+<img id="background" class="background">
 
 <script>
-// ✅ Corrected GitHub URLs with your details (yuligryb / Assignment_6)
+// ✅ Update these URLs with your actual GitHub username & repository name
 const gifURLs = {
     scene1: 'https://yuligryb.github.io/Assignment-6/assets/1.gif',
     scene2: 'https://yuligryb.github.io/Assignment-6/assets/2.gif',
@@ -34,10 +34,10 @@ const gifURLs = {
     scene5: 'https://yuligryb.github.io/Assignment-6/assets/5.gif'
 };
 
-// ✅ Function to set animated GIF backgrounds
+// ✅ Function to set animated GIF backgrounds using HTML
 function setGIFBackground(sceneKey) {
     const bg = document.getElementById("background");
-    bg.style.backgroundImage = `url('${gifURLs[sceneKey]}?v=${new Date().getTime()}')`; // Bypass caching
+    bg.src = gifURLs[sceneKey]; // Set image source
 }
 
 // ✅ Function to add pixel-art styled text
